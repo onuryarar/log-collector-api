@@ -11,7 +11,7 @@ mongoose.connect(
     'mongodb+srv://' + process.env.MONGO_ATLAS_US + ':' +
     process.env.MONGO_ATLAS_PW +
     '@node-ui5-logger-api.4jdds.mongodb.net/test?retryWrites=true&w=majority',
-    { useUnifiedTopology: true });
+    { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
