@@ -1,0 +1,29 @@
+{
+  "name": "ui5-log-collector-api",
+  "version": "1.0.0",
+  "description": "node.js log collector API",
+  "engines": {
+    "node": "12.x"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js --t dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "email": "onurr.yarar@hotmail.com",
+    "name": "Onur Yarar",
+    "url": "https://github.com/onuryarar"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.11",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.4",
+    "yargs": "^16.0.3"
+  },
+  "devDependencies": {}
+}
