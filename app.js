@@ -8,18 +8,20 @@ const cors = require('cors');
 const logRoutes = require('./api/routes/logs');
 
 mongoose.connect(
-    'mongodb+srv://' + process.env.MONGO_ATLAS_US + ':' +
+    'mongodb+srv://' +
+    process.env.MONGO_ATLAS_US + ':' +
     process.env.MONGO_ATLAS_PW +
-    '@node-ui5-logger-api.4jdds.mongodb.net/test?retryWrites=true&w=majority',
-    { useUnifiedTopology: true, useNewUrlParser: true });
+    process.env.MONGO_ATLAS_DB, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
 
-app.use(morgan('dev'));
-app.use('/uploads', express.static('uploads'));
+app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const corsOptions = {
-    origin: 'http://localhost:3006',
+    origin: 'http://localhost:3005',
     optionsSuccessStatus: 200
 }
 
