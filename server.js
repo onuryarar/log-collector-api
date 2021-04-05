@@ -8,8 +8,8 @@ const argv = require('yargs')
 
 const port = process.env.PORT || 3010;
 
-if (argv.type == 'dev') process.env.URL = process.env.DEV_URL + ':' + port;
-if (argv.type == 'prod') process.env.URL = process.env.LIVE_URL;
+if (argv.type === 'dev') process.env.URL = process.env.DEV_URL + ':' + port;
+if (argv.type === 'prod') process.env.URL = process.env.LIVE_URL;
 
 const url = process.env.URL;
 

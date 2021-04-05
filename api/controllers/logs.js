@@ -7,8 +7,8 @@ exports.create = (req, res, next) => {
         return new Log({
             _id: new mongoose.Types.ObjectId(),
             ...log
-        })
-    })
+        });
+    });
     Log.create(logs)
         .then(result => {
             const createdLogs = result.map(res => {
@@ -28,9 +28,9 @@ exports.create = (req, res, next) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ error: err })
-        })
-}
+            res.status(500).json({ error: err });
+        });
+};
 
 exports.get_all = (req, res, next) => {
     Log.find()
@@ -46,16 +46,16 @@ exports.get_all = (req, res, next) => {
                             type: 'GET',
                             url: process.env.URL + '/logs/' + res._id
                         }
-                    }
+                    };
                 }),
-            }
+            };
             res.status(200).json(logs);
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ error: err })
-        })
-}
+            res.status(500).json({ error: err });
+        });
+};
 
 exports.get_single = (req, res, next) => {
     const id = req.params.logId;
@@ -64,18 +64,18 @@ exports.get_single = (req, res, next) => {
         .exec()
         .then(result => {
             if (result) {
-                res.status(200).json(result)
+                res.status(200).json(result);
             } else {
                 res.status(404).json({
                     message: 'Log bulunamadı.'
-                })
+                });
             }
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ error: err })
-        })
-}
+            res.status(500).json({ error: err });
+        });
+};
 
 exports.get_filtered = (req, res, next) => {
     Log.find(req.body)
@@ -92,18 +92,18 @@ exports.get_filtered = (req, res, next) => {
                                 type: 'GET',
                                 url: process.env.URL + '/logs/' + res._id
                             }
-                        }
+                        };
                     }),
-                }
+                };
                 res.status(200).json(logs);
             } else {
                 res.status(404).json({
                     message: 'Log bulunamadı.'
-                })
+                });
             }
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ error: err })
-        })
-}
+            res.status(500).json({ error: err });
+        });
+};
