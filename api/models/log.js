@@ -10,6 +10,6 @@ const logSchema = mongoose.Schema({
     details: { type: String },
     user: { type: String },
     userAgent: { type: String }
-}, { timestamps: true })
+}, { timestamps: true });
 
 module.exports = mongoose.model('Log', logSchema);
