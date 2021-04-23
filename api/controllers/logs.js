@@ -11,24 +11,13 @@ exports.create = (req, res, next) => {
     });
     Log.create(logs)
         .then(result => {
-            const createdLogs = result.map(res => {
-                const { __v, ...log } = res._doc;
-                return {
-                    ...log,
-                    request: {
-                        type: 'GET',
-                        url: process.env.URL + '/logs/' + log._id
-                    }
-                };
-            });
             res.status(201).json({
-                message: 'Log başarıyla eklendi',
-                log: createdLogs
+                message: 'Successful'
             });
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ error: err });
+            res.status(500);
         });
 };
 
@@ -67,7 +56,7 @@ exports.get_single = (req, res, next) => {
                 res.status(200).json(result);
             } else {
                 res.status(404).json({
-                    message: 'Log bulunamadı.'
+                    message: 'Log not found.'
                 });
             }
         })
@@ -98,7 +87,7 @@ exports.get_filtered = (req, res, next) => {
                 res.status(200).json(logs);
             } else {
                 res.status(404).json({
-                    message: 'Log bulunamadı.'
+                    message: 'Log not found.'
                 });
             }
         })
