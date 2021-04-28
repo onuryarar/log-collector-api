@@ -10,12 +10,12 @@ exports.register = (req, res, next) => {
             if (found) {
                 res.status(409).json({
                     message: "Mail already exists"
-                })
+                });
             }
             else {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
-                        console.log(err)
+                        console.log(err);
                         return res.status(500).json({
                             error: err
                         });
@@ -38,13 +38,13 @@ exports.register = (req, res, next) => {
                             .catch(err => {
                                 res.status(500).json({
                                     error: err
-                                })
-                            })
+                                });
+                            });
                     }
-                })
+                });
             }
-        })
-}
+        });
+};
 
 exports.login = (req, res, next) => {
     User.find({ email: req.body.email }).exec()
@@ -52,7 +52,7 @@ exports.login = (req, res, next) => {
             if (!user.length) {
                 return res.status(401).json({
                     message: 'Unauthorized'
-                })
+                });
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (result) {
@@ -61,18 +61,18 @@ exports.login = (req, res, next) => {
                         userId: user[0]._id
                     }, process.env.JWT_KEY, {
                         expiresIn: '1d'
-                    })
+                    });
                     return res.status(200).json({
                         message: 'Authorized',
                         token: token
-                    })
+                    });
                 }
                 res.status(401).json({
                     message: 'Unauthorized'
-                })
-            })
+                });
+            });
         })
         .catch(err => {
-            res.status(500).json({ error: err })
-        })
-}
+            res.status(500).json({ error: err });
+        });
+};
