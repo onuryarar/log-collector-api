@@ -23,7 +23,8 @@ Create the `nodemon.json` file in the root directory
         "LIVE_URL": "YOUR_LIVE_URL",
         "MONGO_ATLAS_US": "YOUR_MONGO_US",
         "MONGO_ATLAS_PW": "YOUR_MONGO_PW",
-        "MONGO_ATLAS_DB": "YOUR_MONGO_DB"
+        "MONGO_ATLAS_DB": "YOUR_MONGO_DB",
+        "JWT_KEY": "YOUR_JWT_KEY"
     }
 }
 ```
