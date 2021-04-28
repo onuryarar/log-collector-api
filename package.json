@@ -26,6 +26,9 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "jshint": "^2.12.0"
+    "jshint": "^2.12.0",
+    "bcrypt": "^5.0.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1"
   }
 }
