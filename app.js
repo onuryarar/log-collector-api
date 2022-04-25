@@ -17,16 +17,11 @@ mongoose.connect(
     useNewUrlParser: true
 });
 
+app.use(cors());
+
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// const corsOptions = {
-//     origin: 'http://localhost:3005',
-//     optionsSuccessStatus: 200
-// }
-
-// app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
