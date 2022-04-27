@@ -16,7 +16,7 @@ const url = process.env.URL;
 const server = http.createServer(app);
 
 server.on('listening', () => {
-    console.log(`server is running at → \x1b[32m${url} \x1b[31m`);
+    console.log('server is running at → \x1b[36m%s\x1b[0m', url);
 });
 
 server.listen(port);
