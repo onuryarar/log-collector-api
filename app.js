@@ -12,10 +12,8 @@ mongoose.connect(
     'mongodb+srv://' +
     process.env.MONGO_ATLAS_US + ':' +
     process.env.MONGO_ATLAS_PW +
-    process.env.MONGO_ATLAS_DB, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-});
+    process.env.MONGO_ATLAS_DB
+);
 
 app.use(cors());
 
