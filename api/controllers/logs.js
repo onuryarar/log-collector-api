@@ -2,23 +2,31 @@ const mongoose = require('mongoose');
 
 const Log = require('../models/log');
 
-exports.create = (req, res, next) => {
-    const logs = req.body.map(log => {
-        return new Log({
+exports.capture = (req, res, next) => {
+    const siteKey = req.query.sitekey;
+
+    if (siteKey) {
+        const log = new Log({
             _id: new mongoose.Types.ObjectId(),
-            ...log
+            sitekey: siteKey,
+            ...req.body
         });
-    });
-    Log.create(logs)
-        .then(result => {
-            res.status(201).json({
-                message: 'Successful'
+        Log.create(log)
+            .then(result => {
+                console.log(result);
+                res.status(201).json({
+                    message: 'Successful'
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500);
             });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500);
+    } else {
+        res.status(400).json({
+            message: 'sitekey is required.'
         });
+    }
 };
 
 exports.get_all = (req, res, next) => {
