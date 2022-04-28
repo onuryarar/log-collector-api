@@ -14,7 +14,7 @@ cd nodejs-log-collector-api && npm install
 
 ### Configuration
 
-Create the `nodemon.json` file in the root directory
+Create the `nodemon.json` file in the root directory and add:
 ```json
 {
     "env": {
