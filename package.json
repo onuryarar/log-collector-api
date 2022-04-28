@@ -8,6 +8,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js --t dev",
+    "heroku": "heroku local dev -p 3010",
     "test": "jshint --exclude=node_modules/ api/ app.js server.js"
   },
   "author": {
