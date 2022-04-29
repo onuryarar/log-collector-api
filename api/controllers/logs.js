@@ -5,28 +5,21 @@ const Log = require('../models/log');
 exports.capture = (req, res, next) => {
     const siteKey = req.query.sitekey;
 
-    if (siteKey) {
-        const log = new Log({
-            _id: new mongoose.Types.ObjectId(),
-            sitekey: siteKey,
-            ...req.body
-        });
-        Log.create(log)
-            .then(result => {
-                console.log(result);
-                res.status(201).json({
-                    message: 'Successful'
-                });
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500);
+    const log = new Log({
+        _id: new mongoose.Types.ObjectId(),
+        sitekey: siteKey,
+        ...req.body
+    });
+    Log.create(log)
+        .then(result => {
+            res.status(201).json({
+                message: 'Successful'
             });
-    } else {
-        res.status(400).json({
-            message: 'sitekey is required.'
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500);
         });
-    }
 };
 
 exports.get_all = (req, res, next) => {
