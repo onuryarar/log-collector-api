@@ -39,6 +39,6 @@ npm start
 Distributed under the MIT License. See [LICENSE][LICENSE] for more information.
 
 
-[build-shield]: https://travis-ci.com/onuryarar/nodejs-log-collector-api.svg?branch=master
+[build-shield]: https://app.travis-ci.com/onuryarar/nodejs-log-collector-api.svg?branch=master
 [build-url]: https://travis-ci.com/onuryarar/nodejs-log-collector-api
 [LICENSE]: https://github.com/onuryarar/nodejs-log-collector-api/blob/master/LICENSE
