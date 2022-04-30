@@ -2,8 +2,8 @@ language: node_js
 node_js:
 - 14
 before_deploy:
-  - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
+- rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
 deploy:
   provider: heroku
   api_key:
-    secure: $(HEROKU_API_KEY)
+    secure: JBppRYxnv4NZtkoT5SB2pqxJLRCYcBGDo9kZTAZQuIhdHDVi4buAscqoDx35wttHnLjpX6K+qpNpTdPQNTbr7irHDn5KWM0B57Mvm7/3ZWpXop6dRBa6evPRm1OozaMx04VkePXBhFYPzQ7P4eb6HqCV3HyOPT0ScbB6wdBUnwyaDxCCUuO3yZ+WXP2fi26L1/bj4F4JWodncE1FN5uJqPROxTZlm51GB+90qP7tuPQ2Yaf9ikb98u293ughkZPH0Q3ZITHq6e+61bBQZhptvD71+HsITqj1acVYYn3SpzQKw0YBz6WrLyU2CvIg1d+Kv0OpA7NgOtIMzJ9eki7Y+rHr7tR4Duy/vuTm1AXikmSY0LUECQ+4CUKHnukRMjoFIwLb6f08wF/axVHih66iEIJpuSIKC2QXNIxBpei98zPvX8qdHc9/eQEZvaSp49MDiOXM74Ga1Nzb3EbMRwJDawMbnZAZYKoTnDhtGcJ1/Ir9sL4ovoCpikM3gk2zv7VoVzjK8frwj3WFIrEezzlaQgFb4edQxXFz/xdzdUrZoY2gxcycJbost8XbEQZLMtwSb5gkcx7uC/WNs1Hp7kTVGbND1x38oZ63qd8Pjh9wj4tf3l1Ije0vdwxOg4sFzCYRQgpcXjoMWn9baDoB6Hhw03hzTKIhzHhTY9JPOH5Js/4=
