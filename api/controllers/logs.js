@@ -64,7 +64,18 @@ exports.get_single = (req, res, next) => {
 };
 
 exports.get_filtered = (req, res, next) => {
-    Log.find(req.body)
+    let projection = {
+        "_id": true,
+        "sitekey": true,
+        "_version": true,
+        "timestamp": true,
+        "reason": true,
+        "exception": true,
+        "environment": true,
+        "createdAt": true
+    }
+    Log.find(req.body, projection)
+        .sort({ createdAt: -1 })
         .select('-__v')
         .exec()
         .then(result => {
