@@ -31,11 +31,7 @@ exports.get_all = (req, res, next) => {
                 count: result.length,
                 log: result.map(res => {
                     return {
-                        ...res._doc,
-                        request: {
-                            type: 'GET',
-                            url: process.env.URL + '/logs/' + res._id
-                        }
+                        ...res._doc
                     };
                 }),
             };
@@ -75,15 +71,7 @@ exports.get_filtered = (req, res, next) => {
             if (result.length) {
                 const logs = {
                     count: result.length,
-                    log: result.map(res => {
-                        return {
-                            ...res._doc,
-                            request: {
-                                type: 'GET',
-                                url: process.env.URL + '/logs/' + res._id
-                            }
-                        };
-                    }),
+                    log: result,
                 };
                 res.status(200).json(logs);
             } else {
