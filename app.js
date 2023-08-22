@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const logRoutes = require('./api/routes/logs');
 const userRoutes = require('./api/routes/user');
+const projectRoutes = require('./api/routes/projects');
 
 mongoose.connect(
     'mongodb+srv://' +
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 
 app.use('/logs', logRoutes);
 app.use('/user', userRoutes);
+app.use('/projects', projectRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found.');
