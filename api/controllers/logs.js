@@ -49,13 +49,7 @@ exports.get_single = (req, res, next) => {
         .select('-__v')
         .exec()
         .then(result => {
-            if (result) {
-                res.status(200).json(result);
-            } else {
-                res.status(404).json({
-                    message: 'Log not found.'
-                });
-            }
+            res.status(200).json(result);
         })
         .catch(err => {
             console.log(err);
@@ -79,17 +73,11 @@ exports.get_filtered = (req, res, next) => {
         .select('-__v')
         .exec()
         .then(result => {
-            if (result.length) {
-                const logs = {
-                    count: result.length,
-                    log: result,
-                };
-                res.status(200).json(logs);
-            } else {
-                res.status(404).json({
-                    message: 'Log not found.'
-                });
-            }
+            const logs = {
+                count: result.length,
+                log: result,
+            };
+            res.status(200).json(logs);
         })
         .catch(err => {
             console.log(err);
