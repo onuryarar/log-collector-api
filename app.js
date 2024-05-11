@@ -9,6 +9,7 @@ const logRoutes = require('./api/routes/logs');
 const userRoutes = require('./api/routes/user');
 const projectRoutes = require('./api/routes/projects');
 
+mongoose.set('strictQuery', false);
 mongoose.connect(
     'mongodb+srv://' +
     process.env.MONGO_ATLAS_US + ':' +
