@@ -1,4 +1,39 @@
+const mongoose = require('mongoose');
+
 const Project = require('../models/project');
+
+exports.create = (req, res, next) => {
+    Project.exists({ name: req.body.name })
+        .then(found => {
+            if (found) {
+                res.status(409).json({
+                    message: "Project already exists"
+                });
+            }
+            else {
+                const siteKey = crypto.randomUUID().replaceAll("-", "");
+
+                const project = new Project({
+                    _id: new mongoose.Types.ObjectId(),
+                    sitekey: siteKey,
+                    name: req.body.name
+                });
+                project.save()
+                    .then(result => {
+                        console.log(result);
+                        res.status(201).json({
+                            message: 'Successful',
+                            sitekey: siteKey
+                        });
+                    })
+                    .catch(err => {
+                        res.status(500).json({
+                            error: err
+                        });
+                    });
+            }
+        });
+};
 
 exports.get_all = (req, res, next) => {
     Project.find()
