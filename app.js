@@ -18,6 +18,7 @@ mongoose.connect(
 );
 
 app.use(cors());
+app.disable("x-powered-by");
 
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
