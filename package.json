@@ -24,7 +24,7 @@
     "express": "^4.19.2",
     "joi": "^17.4.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.11.3",
+    "mongoose": "^6.13.0",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.22",
     "yargs": "^16.2.0"
