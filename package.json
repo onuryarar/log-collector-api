@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "node.js log collector API",
   "engines": {
-    "node": "12.x"
+    "node": "20.x"
   },
   "main": "server.js",
   "scripts": {
