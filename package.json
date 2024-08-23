@@ -30,6 +30,6 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "jshint": "^2.13.4"
+    "jshint": "^2.13.6"
   }
 }
