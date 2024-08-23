@@ -16,7 +16,8 @@ exports.create = (req, res, next) => {
                 const project = new Project({
                     _id: new mongoose.Types.ObjectId(),
                     sitekey: siteKey,
-                    name: req.body.name
+                    name: req.body.name,
+                    description: req.body.description
                 });
                 project.save()
                     .then(result => {
