@@ -15,6 +15,7 @@ exports.create = (req, res, next) => {
 
                 const project = new Project({
                     _id: new mongoose.Types.ObjectId(),
+                    active: true,
                     sitekey: siteKey,
                     name: req.body.name,
                     description: req.body.description

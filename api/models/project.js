@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const projectSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     sitekey: { type: String, required: true },
+    active: { type: Boolean, required: true },
     name: { type: String, required: true },
     description: { type: String },
 }, { timestamps: true });
