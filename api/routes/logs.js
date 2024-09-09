@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const authorization = require('../middleaware/check-auth');
-const sitekey = require('../middleaware/check-sitekey');
-const active = require('../middleaware/check-active');
+const authorization = require('../middleware/check-auth');
+const sitekey = require('../middleware/check-sitekey');
+const active = require('../middleware/check-active');
 
 const LoggerController = require('../controllers/logs');
 
