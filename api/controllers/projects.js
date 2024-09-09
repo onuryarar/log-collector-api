@@ -37,6 +37,26 @@ exports.create = (req, res, next) => {
         });
 };
 
+exports.update = (req, res, next) => {
+    const id = req.params.projectId;
+    delete req.body.sitekey
+    Project.updateOne({ _id: id }, { ...req.body })
+        .then(result => {
+            if (!result.matchedCount) {
+                res.status(404).json({
+                    message: 'Project not found.'
+                });
+            } else {
+                res.status(200).json(result);
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
+};
+
 exports.get_all = (req, res, next) => {
     Project.find()
         .select('-__v')
