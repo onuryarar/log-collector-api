@@ -23,15 +23,15 @@ exports.create = (req, res, next) => {
                 project.save()
                     .then(result => {
                         console.log(result);
+                        req.log({ action: 'project.create' });
+
                         res.status(201).json({
                             message: 'Successful',
                             sitekey: siteKey
                         });
                     })
                     .catch(err => {
-                        res.status(500).json({
-                            error: err
-                        });
+                        res.status(500).json({ error: err });
                     });
             }
         });
@@ -40,20 +40,25 @@ exports.create = (req, res, next) => {
 exports.update = (req, res, next) => {
     const id = req.params.projectId;
     delete req.body.sitekey
-    Project.updateOne({ _id: id }, { ...req.body })
+    Project.findOneAndUpdate({ _id: id }, { ...req.body })
         .then(result => {
-            if (!result.matchedCount) {
+            if (result) {
+                req.log({
+                    action: 'project.update',
+                    oldData: JSON.stringify(result)
+                });
+
+                res.status(200).json({
+                    message: 'Successful'
+                });
+            } else {
                 res.status(404).json({
                     message: 'Project not found.'
                 });
-            } else {
-                res.status(200).json(result);
             }
         })
         .catch(err => {
-            res.status(500).json({
-                error: err
-            });
+            res.status(500).json({ error: err });
         });
 };
 

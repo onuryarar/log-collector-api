@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const auditLog = require('./api/middleware/audit-log');
+
 const logRoutes = require('./api/routes/logs');
 const userRoutes = require('./api/routes/user');
 const projectRoutes = require('./api/routes/projects');
@@ -33,6 +35,8 @@ app.use((req, res, next) => {
     }
     next();
 });
+
+app.use(auditLog);
 
 app.use('/logs', logRoutes);
 app.use('/user', userRoutes);

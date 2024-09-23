@@ -31,6 +31,11 @@ exports.register = (req, res, next) => {
                         user.save()
                             .then(result => {
                                 console.log(result);
+                                req.log({
+                                    action: 'user.register',
+                                    userId: user._id
+                                });
+
                                 res.status(201).json({
                                     message: 'Successful'
                                 });
@@ -62,6 +67,12 @@ exports.login = (req, res, next) => {
                     }, process.env.JWT_KEY, {
                         expiresIn: '1d'
                     });
+
+                    req.log({
+                        action: 'user.login',
+                        userId: user[0]._id
+                    });
+
                     return res.status(200).json({
                         message: 'Authorized',
                         token: token
