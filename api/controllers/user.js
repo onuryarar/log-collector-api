@@ -52,38 +52,55 @@ exports.register = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    User.find({ email: req.body.email }).exec()
-        .then(user => {
-            if (!user.length) {
+    User.findOne({ email: req.body.email }).exec()
+        .then(async user => {
+            if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
                 return res.status(401).json({
                     message: 'Unauthorized'
                 });
             }
-            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-                if (result) {
-                    const token = jwt.sign({
-                        email: user[0].email,
-                        userId: user[0]._id
-                    }, process.env.JWT_KEY, {
-                        expiresIn: '1d'
-                    });
 
-                    req.log({
-                        action: 'user.login',
-                        userId: user[0]._id
-                    });
+            const token = jwt.sign({
+                email: user.email,
+                userId: user._id
+            }, process.env.JWT_KEY, {
+                expiresIn: '1d'
+            });
 
-                    return res.status(200).json({
-                        message: 'Authorized',
-                        token: token
-                    });
-                }
-                res.status(401).json({
-                    message: 'Unauthorized'
-                });
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'Strict'
+            })
+
+            req.log({
+                action: 'user.login',
+                userId: user._id
+            });
+
+            return res.status(200).json({
+                message: 'Authorized'
             });
         })
         .catch(err => {
+            console.log(err);
             res.status(500).json({ error: err });
         });
 };
+
+exports.logout = (req, res, next) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict'
+    })
+
+    req.log({
+        action: 'user.logout',
+        userId: req.user._id
+    });
+
+    res.json({
+        message: 'Logged Out'
+    });
+}
